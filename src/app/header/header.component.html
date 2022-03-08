@@ -1,0 +1,32 @@
+<nav class="main-header navbar sticky-top navbar-light bg-light">
+  <div class="container-fluid">
+    <h4 class="navbar-brand">Job Portal</h4>
+
+    <div class="" id="navbarNav" *ngIf="navbarLinksArray && navbarLinksArray.length > 0">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngFor="let navbarLinkObj of navbarLinksArray">
+          <a class="nav-link" [routerLink]="navbarLinkObj.url"
+            routerLinkActive="active" *ngIf="!(navbarLinkObj.clickEventRequired)">{{navbarLinkObj.label}}
+          </a>
+          <a class="nav-link" [routerLink]="navbarLinkObj.url" (click)="navLinkClicked(navbarLinkObj.label)"
+          *ngIf="navbarLinkObj.clickEventRequired">{{navbarLinkObj.label}}</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="row mx-0 justify-content-between min-header" style="width: 100%;" *ngIf="breadcrumbLinks.length > 0">
+    <div class="breadcrumb-container">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" *ngFor="let breadcrumbLink of breadcrumbLinks; let i = index"
+        ngClass="{'active' :  i == (breadcrumbLinks.length - 1) }">{{breadcrumbLink}}</li>
+        <!-- <li class="breadcrumb-item active" aria-current="page">Library</li> -->
+      </ol>
+    </div>
+    <h6 class="profile-name" *ngIf="profileName">
+      Hi {{profileName}}
+    </h6>
+  </div>
+</nav>

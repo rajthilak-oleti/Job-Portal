@@ -1,0 +1,77 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    
+    <div class="form-container row mx-0">
+      <form #registerForm="ngForm" class="template-form registration" (ngSubmit)="registerEmployer()">
+        <h4 class="text-center">Create Account</h4>
+        <div class="alert alert-danger my-2" role="alert" *ngIf="registerFormError">
+          {{registerFormError}}
+        </div>
+
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" ngModel name="firstName" required
+            #firstName="ngModel">
+            <div class="form-control-feedback" *ngIf="firstName?.errors && (firstName.dirty || firstName.touched)">
+              <span class="form-text" *ngIf="firstName?.errors?.required">First Name is required</span>
+            </div>
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastName" ngModel name="lastName" required
+            #lastName="ngModel">
+            <div class="form-control-feedback" *ngIf="lastName?.errors && (lastName.dirty || lastName.touched)">
+              <span class="form-text" *ngIf="lastName?.errors?.required">Last Name is required</span>
+            </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" ngModel name="email" required email
+            #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <div class="form-control-feedback" *ngIf="email?.errors && (email.dirty || email.touched)">
+              <span class="form-text" *ngIf="email?.errors?.required">Email is required</span>
+              <span class="form-text" *ngIf="email?.errors?.pattern">Email is not valid</span>
+            </div>
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" ngModel name="username" required
+            #username="ngModel">
+            <div class="form-control-feedback" *ngIf="username?.errors && (username.dirty || username.touched)">
+              <span class="form-text" *ngIf="username?.errors?.required">Username is required</span>
+            </div>
+        </div>
+        
+        <div ngModalGroup="passwordFields">
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" ngModel name="password" required
+              #password="ngModel" minlength="8" appCustomPasswordValidator>
+              <div class="form-control-feedback" *ngIf="password?.errors && (password.dirty || password.touched)">
+                <span class="form-text" *ngIf="password?.errors?.required">Password is required</span>
+                <span class="form-text" *ngIf="password?.errors?.minlength">Password should be atleast 8 characters</span>
+                <span class="form-text" 
+                *ngIf="!(password?.errors?.minlength) && password?.errors?.passwordValidator">
+                Should be Alphanumeric with atleast one special character</span>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" ngModel name="confirmPassword" required #confirmPassword="ngModel" pattern="{{password.value}}">
+            <div class="form-control-feedback" *ngIf="confirmPassword?.errors && 
+              (confirmPassword.dirty ||  confirmPassword.touched)">
+              <span class="form-text" *ngIf="confirmPassword?.errors?.required">Enter password again</span>
+              <span class="form-text" *ngIf="confirmPassword?.errors?.pattern">Password should be matched</span>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btn btn-danger m-1 form-btn" [routerLink]="['/jobseeker/login']">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+
+      </form>
+    </div>
+    
+  </div>
+
+</div>

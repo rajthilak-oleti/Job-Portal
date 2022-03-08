@@ -1,0 +1,78 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    
+    <div class="form-container row mx-0">
+      <form #jobManageForm="ngForm" class="template-form registration" (ngSubmit)="manageJob()">
+        <div class="alert alert-danger my-2" role="alert" *ngIf="jobManageFormError">
+          {{jobManageFormError}}
+        </div>
+        <div class="mb-3">
+          <label for="jobTitle" class="form-label">Job Title</label>
+          <input type="text" class="form-control" id="jobTitle" [ngModel]="defaultJobValues.jobTitle" name="jobTitle" required #jobTitle="ngModel">
+            <div class="form-control-feedback" *ngIf="jobTitle?.errors && (jobTitle.dirty || jobTitle.touched)">
+              <span class="form-text" *ngIf="jobTitle?.errors?.required">Job Title is required</span>
+            </div>
+        </div>
+        <div class="mb-3">
+          <label for="jobDescription" class="form-label">Job Description</label>
+          <textarea type="text" class="form-control" id="jobDescription" [ngModel]="defaultJobValues.jobDescription" name="jobDescription" required #jobDescription="ngModel"></textarea>
+            <div class="form-control-feedback" 
+              *ngIf="jobDescription?.errors && (jobDescription.dirty || jobDescription.touched)">
+              <span class="form-text" *ngIf="jobDescription?.errors?.required">Job Description is required</span>
+            </div>
+        </div>
+        <div class="mb-4">
+          <label for="skills" class="form-label">Skills</label>
+            <div>
+              <select id="skills" multiple="multiple" class="select full-width" name="skills" required 
+              [ngModel]="defaultJobValues.skills" #skills="ngModel">
+                <option value="PHP">PHP</option>
+                <option value="Java">Java</option>
+                <option value=".Net">.Net</option>
+                <option value="Python">Python</option>
+                <option value="Ruby">Ruby</option>
+              </select>
+              <div class="form-control-feedback" *ngIf="skills?.errors && (skills.dirty || skills.touched)">
+                <span class="form-text" *ngIf="skills?.errors?.required">Select atleast one skill</span>
+              </div>
+              <span class="text-muted small">
+                For windows: Hold down the control (ctrl) button to select multiple options
+                For Mac: Hold down the command button to select multiple options
+              </span>
+            </div>  
+        </div>
+
+        
+        <div ngModalGroup="experienceFields">
+          <div class="mb-3">
+            <label for="experienceInYears" class="form-label">Experience</label>
+            <div class="row">
+              <div class="col">
+                <label for="experienceInYears" class="form-label">years</label>
+                <input type="number" class="form-control" id="experienceInYears" [ngModel]="defaultJobValues.experienceInYears" name="experienceInYears" required #experienceInYears="ngModel">
+                  <div class="form-control-feedback" *ngIf="experienceInYears?.errors && 
+                    (experienceInYears.dirty || experienceInYears.touched)">
+                    <span class="form-text" *ngIf="experienceInYears?.errors?.required">Required</span>
+                  </div>
+              </div>
+              <div class="col">
+                <label for="experienceInMonths" class="form-label">Months</label>
+                <input type="number" class="form-control" id="experienceInMonths" [ngModel]="defaultJobValues.experienceInMonths" name="experienceInMonths" required #experienceInMonths="ngModel">
+                <div class="form-control-feedback" *ngIf="experienceInMonths?.errors && 
+                  (experienceInMonths.dirty || experienceInMonths.touched)">
+                  <span class="form-text" *ngIf="experienceInMonths?.errors?.required">Required</span>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+        
+        <button class="btn btn-danger m-1 form-btn" (click)="resetFormAndRedirect()" >Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!jobManageForm.valid">{{jobOperationToPerform}}</button>
+
+      </form>
+    </div>
+    
+  </div>
+
+</div>

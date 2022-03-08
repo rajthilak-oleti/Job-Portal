@@ -1,0 +1,29 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    
+    <div class="form-container row mx-0">
+      <form #jobApplyForm="ngForm" class="template-form registration" (ngSubmit)="applyJob()">
+        <h4>Application for "{{jobDetailsToApply.jobTitle}}"</h4>
+        <div class="alert alert-danger my-2" role="alert" *ngIf="jobApplyFormError">
+          {{jobApplyFormError}}
+        </div>
+        <div class="mb-3">
+          <label for="headline" class="form-label">Headline</label>
+          <input type="text" class="form-control" id="headline" ngModel name="headline"
+            #headline="ngModel">
+        </div>
+        <div class="mb-3">
+          <label for="coverletter" class="form-label">Cover Letter</label>
+          <textarea type="text" class="form-control" id="coverletter" ngModel name="coverletter"
+            #coverletter="ngModel"></textarea>
+        </div>
+        
+        <button class="btn btn-danger m-1 form-btn" (click)="resetFormAndRedirect()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!jobApplyForm.valid">Apply</button>
+
+      </form>
+    </div>
+    
+  </div>
+
+</div>

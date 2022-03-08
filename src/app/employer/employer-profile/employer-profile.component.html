@@ -1,0 +1,52 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    <div class="form-container row mx-0">
+      <form #profileEdit="ngForm" class="template-form registration" (ngSubmit)="updateProfile()">
+        <h4 class="text-center">Edit Profile</h4>  
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" [ngModel]="userDetails.firstName" name="firstName" required #firstName="ngModel">
+          <div class="form-control-feedback" *ngIf="firstName?.errors && (firstName.dirty || firstName.touched)">
+            <span class="form-text" *ngIf="firstName?.errors?.required">First Name is required</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastName" [ngModel]="userDetails.lastName" name="lastName" required #lastName="ngModel">
+          <div class="form-control-feedback" *ngIf="lastName?.errors && (lastName.dirty || lastName.touched)">
+            <span class="form-text" *ngIf="lastName?.errors?.required">Last Name is required</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" [ngModel]="userDetails.email" name="email" required email #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <div class="form-control-feedback" *ngIf="email?.errors && (email.dirty || email.touched)">
+            <span class="form-text" *ngIf="email?.errors?.required">Email is required</span>
+            <span class="form-text" *ngIf="email?.errors?.pattern">Email is not valid</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" [ngModel]="userDetails.username" name="username" required #username="ngModel" disabled>
+          <div class="form-control-feedback" *ngIf="username?.errors && (username.dirty || username.touched)">
+            <span class="form-text" *ngIf="username?.errors?.required">Username is required</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="company" class="form-label">Company</label>
+          <input type="text" class="form-control" id="company" [ngModel]="userDetails.company" name="company" required #company="ngModel" disabled>
+          <div class="form-control-feedback" *ngIf="company?.errors && (company.dirty || company.touched)">
+            <span class="form-text" *ngIf="company?.errors?.required">Company is required</span>
+          </div>
+        </div>
+
+        <div class="row mx-0 ml-auto">
+          <button type="submit" class="btn btn-danger m-1 form-btn" (click)="redirectToDashboard()">Cancel</button>
+          <button type="submit" class="btn btn-primary m-1 form-btn" [disabled]="!profileEdit.valid">Update</button>
+        </div>
+      </form>
+    </div>
+    
+  </div>
+
+</div>

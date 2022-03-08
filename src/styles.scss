@@ -1,0 +1,235 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  min-height: 100vh;
+}
+body {
+  margin: 0 !important;
+}
+
+.main-wrapper {
+  overflow: hidden;
+  .main-header {
+    min-height: 82px;
+  }
+  .main-content {
+    height: calc(100vh - 82px);
+    max-height: calc(100vh - 82px);
+    overflow: hidden auto;
+  }
+}
+
+.navbar {
+  padding-bottom: 0px !important;
+  .navbar-nav{
+    flex-direction: row !important;
+    .nav-item {
+      margin: 0px 5px;
+      .nav-link {
+        text-transform: capitalize;
+        padding: 0px 5px;
+      }
+    }
+  }
+}
+.min-header {
+  background-color: lighten(grey, 30%);
+  align-items: baseline;
+  .breadcrumb-container {
+    text-transform: capitalize;
+    max-width: max-content;
+    .breadcrumb {
+      max-width: max-content;
+      font-size: 14px;
+      margin: 5px 0px !important;
+    }
+  }
+  .profile-name {
+    max-width: max-content !important;
+    margin-bottom: 0px !important;
+  }
+
+}
+
+.btn {
+  &.form-btn, &.create-item-btn {
+    max-width: max-content;
+  }
+}
+
+.table-container {
+  width: 90%;
+  margin: 0 auto;
+  .mat-form-field {
+    max-width: max-content;
+  }
+  table{
+    &.mat-table {
+      td{
+        &.mat-cell {
+          button {
+            padding: 5px 10px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dashboard-card {
+  min-height: 80px;
+  height: 80px;
+  max-height: fit-content;
+  background-color: lighten(blue, 20%);
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  .card-inner-grid {
+    height: 100%;
+    align-items: center;
+    .label, .count {
+      margin-bottom: 0px;
+    }
+    .label-container {
+      width: 70%;
+      .label {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+    .count-container {
+      width: 30%;
+      text-align: right;
+      .count {
+        font-size: 30px;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.page-wrapper {
+  .header {
+    width: 100%;
+    min-height: 60px;
+    max-height: max-content;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 5px;
+    .brand-logo {
+      max-width: fit-content;
+      a{
+        text-decoration: none;
+      }
+    } 
+    .links-container {
+      max-width: fit-content;
+      a {
+        margin: 5px;
+        color: black;
+        .active {
+          color: blue;
+        }
+        &:hover {
+          color: blue;
+        }
+      }
+    }
+  }
+  .page-content {
+    height: 100%;
+    padding-top: 10px;
+    .page-inline-row {
+      justify-content: space-between; 
+      padding: 0px 5px;
+      text-transform: capitalize;
+      .title {
+        font-size: 20px;
+        color: grey;
+        max-width: max-content;
+      }
+      button {
+        &.create-item-btn {
+          padding: 5px 10px;
+          font-size: 13px;
+        }
+      }
+    }
+    .data-placeholder {
+      justify-content: center;
+      align-items: center;
+      color: grey;
+      h4 {
+        text-align: center;
+      }
+    }
+  }
+  .cover-img {
+    margin: 0 auto;
+    width: 1000px;
+  }
+
+  .form-container {
+    justify-content: center;
+    padding: 10px;
+    .form-control{
+      &:disabled, &[readonly] {
+        opacity: .6;
+      }
+    }
+    .template-form {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+      border-radius: 8px;
+      padding: 15px;
+      max-width: 500px;
+      button {
+        border: none;
+        &:disabled {
+          background-color: lighten(grey, 20%) !important;
+        }
+      }
+      input {
+        &.ng-invalid {
+          &.ng-touched {
+            border-color: red;
+          }
+        }
+      }
+      .form-text {
+        color: red;
+      }
+      select {
+        &.full-width {
+          width: 100%;
+          option {
+            padding: 5px 10px;
+          }
+        }
+      }
+      button {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .job-card {
+    border-radius: 5px;
+    .card-header {
+      .job-title {
+        padding-bottom: 0px;
+      }
+    }
+    .card-body {
+      padding: 8px 14px;
+    }
+  }
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

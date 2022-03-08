@@ -1,0 +1,66 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    <div class="row mx-0 page-inline-row">
+      <h4 class="title">Jobs Created</h4>
+      <button class="btn btn-primary create-item-btn" (click)="createNewJob()">Create Job</button>
+    </div>
+
+    <div class="data-placeholder row mx-0" *ngIf="jobsNotFound">
+      <h4>No Jobs Created</h4>
+    </div>
+
+    <div class="table-container" *ngIf="jobsList && jobsList.length > 0">
+      <div class="row mx-0">
+        <mat-form-field>
+          <input matInput type="text" (keyup)="doFilter($event)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+  
+        <table mat-table [dataSource]="dataSource" matSort matSortStart="desc" style="width: 100%;">
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Title </th>
+            <td mat-cell *matCellDef="let element"> {{element.jobTitle}} </td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.jobDescription}} </td>
+          </ng-container>
+          <ng-container matColumnDef="skills">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Skills Required </th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngFor="let skill of element.skills; let i=index"> 
+                {{(i === element.skills.length - 1) ? skill : skill + ','}}
+              </span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="experience">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Experience Required</th>
+            <td mat-cell *matCellDef="let element">
+              <span class="mr-1" *ngIf="element.experienceInYears">{{element.experienceInYears }} years</span>
+              <span class="mx-1" *ngIf="element.experienceInMonths">{{element.experienceInMonths }} Months</span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="applicationsCount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Applications Count </th>
+            <td mat-cell *matCellDef="let element"> {{element.applicationsCount}} </td>
+          </ng-container>
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button class="btn btn-primary" color="accent" *ngIf="!(element.applicationsCount > 0)" 
+                  (click)="editJob(element)">
+                  Edit
+                </button>
+              </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+
+
+
+  </div>
+</div>
